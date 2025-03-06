@@ -1,14 +1,16 @@
-import { useState } from 'react'
-import './App.css'
+import './App.css';
+import FoodDeliveryForm from './FoodDeliveryForm';
 
 function App() {
   // const [count, setCount] = useState(0)
 
   return (
-      <p className="read-the-docs">
-        Hello React Form
-      </p>
-  )
+    <div className="container">
+      <div className="mx-5">
+        <FoodDeliveryForm />
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
