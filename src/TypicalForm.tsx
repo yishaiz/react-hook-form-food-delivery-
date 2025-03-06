@@ -1,21 +1,16 @@
 import { ChangeEvent, SyntheticEvent, useState } from 'react';
-import { useForm } from 'react-hook-form';
 
 type FoodDeliveryFormType = {
   customerName: string;
   mobile: string;
 };
-/*
+
 type FoodDeliveryFormErrorType = {
   customerName: string;
   mobile: string;
 };
-*/
 
-export default function FoodDeliveryForm() {
-  const { register } = useForm<FoodDeliveryFormType>();
-
-  /*
+export default function TypicalForm() {
   const [values, setValues] = useState<FoodDeliveryFormType>({
     customerName: '',
     mobile: '',
@@ -25,13 +20,6 @@ export default function FoodDeliveryForm() {
     customerName: '',
     mobile: '',
   });
-
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-
-    setValues({ ...values, [name]: value });
-  };
-
 
   const validateFormData = (): boolean => {
     // const errors: FoodDeliveryFormErrorType = {
@@ -53,33 +41,34 @@ export default function FoodDeliveryForm() {
 
     return Object.values(tempErrors).every((x) => x === '');
   };
-*/
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setValues({ ...values, [name]: value });
+  };
 
   const onSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
-    // e.preventDefault();
+    e.preventDefault();
 
-    // if (validateFormData()) {
-    //   console.log('form data', values);
-    // } else {
-    //   console.log('form is invalid');
-    // }
+    if (validateFormData()) {
+      console.log('form data', values);
+    } else {
+      console.log('form is invalid');
+    }
   };
 
   return (
     <form autoComplete="off" onSubmit={onSubmit}>
       <div className="form-floating mb-3">
-      <input
-        type="text"
-        // name="customerName"
-        className="form-control"
-        placeholder="Customer Name"
-        // value={values.customerName}
-        // onChange={handleInputChange}
-        {register('customerName')}
-      />
-
-
-
+        <input
+          type="text"
+          name="customerName"
+          className="form-control"
+          placeholder="Customer Name"
+          value={values.customerName}
+          onChange={handleInputChange}
+        />
         <label htmlFor="floatingInput">Customer Name</label>
       </div>
 
