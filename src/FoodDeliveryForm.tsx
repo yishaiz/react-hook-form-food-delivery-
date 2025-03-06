@@ -1,4 +1,3 @@
-import { ChangeEvent, SyntheticEvent, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 type FoodDeliveryFormType = {
@@ -9,22 +8,24 @@ type FoodDeliveryFormType = {
 export default function FoodDeliveryForm() {
   const { register, handleSubmit } = useForm<FoodDeliveryFormType>();
 
-  // const onSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
-
   const onSubmit = (formData: FoodDeliveryFormType) => {
-    // e.preventDefault();
-
     console.log('form data', formData);
   };
 
+  const onError = (errors) => {
+    console.log('validation errors', errors);
+  };
+
   return (
-    <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+    <form autoComplete="off" onSubmit={handleSubmit(onSubmit, onError)}>
       <div className="form-floating mb-3">
         <input
           type="text"
           className="form-control"
           placeholder="Customer Name"
-          {...register('customerName')}
+          {...register('customerName', {
+            required: 'Customer name is required',
+          })}
         />
         <label htmlFor="floatingInput">Customer Name</label>
       </div>
@@ -34,7 +35,7 @@ export default function FoodDeliveryForm() {
           type="text"
           className="form-control"
           placeholder="Mobile"
-          {...register('mobile')}
+          {...register('mobile', { required: 'Mobile number is required' })}
         />
         <label htmlFor="floatingInput">Mobile</label>
       </div>
