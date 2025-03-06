@@ -7,19 +7,18 @@ type FoodDeliveryFormType = {
 };
 
 export default function FoodDeliveryForm() {
-  const { register } = useForm<FoodDeliveryFormType>();
+  const { register, handleSubmit } = useForm<FoodDeliveryFormType>();
 
-  const onSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
+  // const onSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
+
+  const onSubmit = (formData: FoodDeliveryFormType) => {
     // e.preventDefault();
-    // if (validateFormData()) {
-    //   console.log('form data', values);
-    // } else {
-    //   console.log('form is invalid');
-    // }
+
+    console.log('form data', formData);
   };
 
   return (
-    <form autoComplete="off" onSubmit={onSubmit}>
+    <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
       <div className="form-floating mb-3">
         <input
           type="text"
