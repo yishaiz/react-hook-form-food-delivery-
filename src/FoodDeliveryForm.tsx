@@ -19,12 +19,12 @@ export default function FoodDeliveryForm() {
 
   const onSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
+
     console.log(values);
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form autoComplete="off" onSubmit={onSubmit}>
       <div className="form-floating mb-3">
         <input
           type="text"
