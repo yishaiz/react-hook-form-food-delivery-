@@ -7,6 +7,14 @@ type FoodDeliveryFormType = {
 
 export default function FoodDeliveryForm() {
   const { register, handleSubmit } = useForm<FoodDeliveryFormType>();
+  // console.log(register('customerName'));
+
+  const onSubmit = (formData:FoodDeliveryFormType ) => {
+    
+  };
+
+  /*
+  
 
   const onSubmit = (formData: FoodDeliveryFormType) => {
     console.log('form data', formData);
@@ -15,27 +23,25 @@ export default function FoodDeliveryForm() {
   const onError = (errors) => {
     console.log('validation errors', errors);
   };
-
+*/
   return (
-    <form autoComplete="off" onSubmit={handleSubmit(onSubmit, onError)}>
+    <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
       <div className="form-floating mb-3">
         <input
+          {...register('customerName', { value: 'Fiona' })}
           type="text"
           className="form-control"
           placeholder="Customer Name"
-          {...register('customerName', {
-            required: 'Customer name is required',
-          })}
         />
         <label htmlFor="floatingInput">Customer Name</label>
       </div>
 
       <div className="form-floating mb-3">
         <input
+          {...register('mobile')}
           type="text"
           className="form-control"
           placeholder="Mobile"
-          {...register('mobile', { required: 'Mobile number is required' })}
         />
         <label htmlFor="floatingInput">Mobile</label>
       </div>
